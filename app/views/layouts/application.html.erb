@@ -11,6 +11,18 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li><%= link_to'ABOUT',public_about_path %></li>
+          <li><%= link_to'USER SIGN UP',new_user_registration_path %></li>
+          <li><%= link_to'USER LOG IN',new_user_session_path %></li>
+          <li><%= link_to'ADMIN LOG IN',new_admin_session_path %></li>
+          <li>ゲスト</li>
+        </ul>
+      </nav>
+    </header>
+
     <%= yield %>
   </body>
 </html>
