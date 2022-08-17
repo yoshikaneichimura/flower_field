@@ -7,7 +7,9 @@
 
   <%= form_with model: @post_image,url: public_post_image_path,method: :patch do |f| %>
 
-  <p>エリア</p>
+  <h3>「いつ？どこで？どんな花が？」</h3>
+
+  <p><strong>地域</strong></p>
 
    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :area ) do |tag| %>
 
@@ -21,35 +23,35 @@
 
    <% end %>
 
-    <p>どんな花？</p>
-
-    <p><%= f.text_field :flower %></p>
-
-    <p>どんな場所？</p>
-
-    <p><%= f.text_field :field %></p>
-
-</div>
-
-<div>
-
-    <p>いつ？</p>
+    <p><strong>いつ？</strong></p>
 
     <p><%= f.text_field :day %></p>
 
-    <p>何分咲き？</p>
+    <p><strong>どこで？</strong></p>
+
+    <p><%= f.text_field :field %></p>
+
+    <p><strong>どんな花が？</strong></p>
+
+    <p><%= f.text_field :flower %></p>
+
+  </div>
+
+  <div>
+
+    <p><strong>何分咲き？</strong></p>
 
     <p><%= f.text_field :star %></p>
 
-    <p>どこで？</p>
+    <p><strong>住所など分かりましたらお願いします。</strong>＜任意＞</p>
 
     <p><%= f.text_area :address %></p>
 
-    <p>コメント</p>
+    <p><strong>お気付きな事がありましたらお願いします。</strong>＜任意＞</p>
 
     <p><%= f.text_area :comment %></p>
 
-    <%= f.submit '編集する' %>
+    <%= f.submit '投稿' %>
 
   <% end %>
 

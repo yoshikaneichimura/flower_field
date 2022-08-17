@@ -1,0 +1,58 @@
+<h1>Public::Users#show</h1>
+<p>Find me in app/views/public/users/show.html.erb</p>
+
+<% if @user == current_user %>
+  <h3>My Page</h3>
+<% else %>
+  <h3>User Detail</h3>
+<% end %>
+
+<div>
+
+    <p>IMAGE</p>
+
+    <p>IMAGE</p>
+
+    <p>Name</p>
+
+    <p><%= @user.name %></p>
+
+    <p>Introduction</p>
+
+    <p><%= @user.introduction %></p>
+
+  <% if @user == current_user %>
+    <p><%= link_to"編集する",edit_public_user_path(@user.id) %></p>
+  <% end %>
+
+</div>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>花</th>
+        <th>場所</th>
+        <th>月日</th>
+        <th>地域</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @post_images.each do |post_image|%>
+      <tr>
+        <td></td>
+        <td><%= post_image.flower %></td>
+        <td><%= post_image.field %></td>
+        <td><%= post_image.day %></td>
+        <td><% post_image.tags.each do |tag|%>
+              <%= tag.area %>
+            <% end %>
+        </td>
+        <td><%= link_to'詳細',public_post_image_path(post_image.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

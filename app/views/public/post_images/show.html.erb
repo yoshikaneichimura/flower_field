@@ -1,7 +1,7 @@
 <h1>Public::PostImages#show</h1>
 <p>Find me in app/views/public/post_images/show.html.erb</p>
 
-<h3>Flower Field detail</h3>
+<h3>Flower Field Detail</h3>
 
 <div>
   <p>IMAGE</p>
@@ -9,33 +9,35 @@
 
 <div>
 
-  <p>地域</p>
-  <p><% @post_image.tags.each do |tag| %>
-      <%= tag.area %>
-     <% end %></p>
+    <p><strong>Area</strong></p>
+    <p><% @post_image.tags.each do |tag| %>
+        <%= tag.area %>
+       <% end %></p>
 
-  <p>花</p>
-  <p><%= @post_image.flower %></p>
+    <p><strong>Flower</strong></p>
+    <p><%= @post_image.flower %></p>
 
-  <p>場所</p>
-  <p><%= @post_image.field %></p>
+    <p><strong>Field</strong></p>
+    <p><%= @post_image.field %></p>
 
-  <p>月日</p>
-  <p><%= @post_image.day %></p>
+    <p><strong>Day</strong></p>
+    <p><%= @post_image.day %></p>
 
-  <p>開花状況</p>
-  <p><%= @post_image.star %></p>
+    <p><strong>Reviwe</strong></p>
+    <p><%= @post_image.star %></p>
 
-  <p>住所</p>
-  <p><%= @post_image.address %></p>
+    <p><strong>Adress</strong></p>
+    <p><%= @post_image.address %></p>
 
-  <p>コメント</p>
-  <p><%= @post_image.comment %></p>
+    <p><strong>Comment</strong>
+    <p><%= @post_image.comment %></p>
 
-  <p>投稿書</p>
-  <p><%= @post_image.user.name %></p>
+    <p><strong>User</strong></p>
+    <p><%= @post_image.user.name %></p>
 
-  <p><%= link_to'編集',edit_public_post_image_path(@post_image.id) %></p>
-  <p><%= link_to'削除',public_post_image_path(@post_image.id),method: :delete,"data-confirm"=>"本当に削除しますか？" %></p>
+  <% if @post_image.user == current_user %>
+    <p><%= link_to'編集',edit_public_post_image_path(@post_image.id) %></p>
+    <p><%= link_to'削除',public_post_image_path(@post_image.id),method: :delete,"data-confirm"=>"本当に削除しますか？" %></p>
+  <% end %>
 
 </div>

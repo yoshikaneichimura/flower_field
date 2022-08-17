@@ -1,0 +1,27 @@
+<h1>Public::Users#index</h1>
+<p>Find me in app/views/public/users/index.html.erb</p>
+
+<h3>Users</h3>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>IMAGE</th>
+        <th>Name</th>
+        <th>Introduction</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td></td>
+        <td><%= user.name %></td>
+        <td><%= user.introduction %></td>
+        <td><%= link_to'詳細',public_user_path(user.id )%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

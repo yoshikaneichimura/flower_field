@@ -1,0 +1,26 @@
+<h1>Public::Users#edit</h1>
+<p>Find me in app/views/public/users/edit.html.erb</p>
+
+<div>
+
+  <%= form_with model: @user,url: public_user_path(@user.id),method: :patch do |f| %>
+
+    <p>IMAGE</p>
+
+    <p>IMAGE</p>
+
+    <p>Name</p>
+
+    <p><%= f.text_field :name %></p>
+
+    <p>Introduction</p>
+
+    <p><%= f.text_area :introduction %></p>
+
+    <p><%= f.submit '編集する'%></p>
+
+  <% end %>
+
+</div>
+
+<p><%= link_to'退会する',public_unsubscribe_path(@user.id) %></p>

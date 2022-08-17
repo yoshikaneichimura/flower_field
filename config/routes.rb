@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
 
+
   root to:'public/homes#top'
 
   namespace :public do
     get 'about'=> 'homes#about',as: 'about'
+  end
+
+  namespace :public do
+    resources:users,only:[:index,:show,:edit,:update,:destroy]
+    get 'unsubscribe' => 'users#unsubscribe'
+    patch 'withdraw' => 'users#withdraw'
   end
 
   namespace :public do
