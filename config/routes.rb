@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     get 'about'=> 'homes#about',as: 'about'
   end
 
+  namespace :public do
+    resources:post_images
+  end
+
   devise_for :users,controllers:{
     registrations:"public/registrations",
     sessions:'public/sessions'

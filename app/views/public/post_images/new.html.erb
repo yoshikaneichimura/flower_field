@@ -1,0 +1,56 @@
+<h1>Public::PostImages#new</h1>
+<p>Find me in app/views/public/post_images/new.html.erb</p>
+
+<h1>New Flower Field</h1>
+
+<div>
+
+  <%= form_with model: @post_image,url: public_post_images_path,method: :post do |f| %>
+
+  <p>エリア</p>
+
+   <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :area ) do |tag| %>
+
+     <%= tag.label do %>
+
+      <%= tag.check_box %>
+
+      <%= tag.text %>
+
+     <% end %>
+
+   <% end %>
+
+    <p>どんな花？</p>
+
+    <p><%= f.text_field :flower %></p>
+
+    <p>どんな場所？</p>
+
+    <p><%= f.text_field :field %></p>
+
+</div>
+
+<div>
+
+    <p>いつ？</p>
+
+    <p><%= f.text_field :day %></p>
+
+    <p>何分咲き？</p>
+
+    <p><%= f.text_field :star %></p>
+
+    <p>どこで？</p>
+
+    <p><%= f.text_area :address %></p>
+
+    <p>コメント</p>
+
+    <p><%= f.text_area :comment %></p>
+
+    <%= f.submit '投稿' %>
+
+  <% end %>
+
+</div>
