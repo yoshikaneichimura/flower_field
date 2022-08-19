@@ -38,7 +38,7 @@ class Public::PostImagesController < ApplicationController
   private
 
   def post_image_params
-    params.require(:post_image).permit(:flower,:field,:day,:star,:address,:comment,tag_ids:[] )
+    params.require(:post_image).permit(:flower,:field,:day,:star,:address,:comment,:image,tag_ids:[] )
   end
 
 end

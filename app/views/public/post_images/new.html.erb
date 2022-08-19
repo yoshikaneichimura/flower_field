@@ -7,7 +7,7 @@
 
   <%= form_with model: @post_image,url: public_post_images_path,method: :post do |f| %>
 
-  <h3>「いつ？どこで？どんな花が？」</h3>
+  <h3>「いつ？どこで？どんな花が、、、」</h3>
 
   <p><strong>地域</strong></p>
 
@@ -22,6 +22,10 @@
      <% end %>
 
    <% end %>
+
+    <p><strong>画像</strong></p><strong>
+
+    <p><%= f.file_field :image, accept: "image/*" %></p>
 
     <p><strong>いつ？</strong></p>
 

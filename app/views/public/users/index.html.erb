@@ -7,7 +7,7 @@
   <table>
     <thead>
       <tr>
-        <th>IMAGE</th>
+        <th>Image</th>
         <th>Name</th>
         <th>Introduction</th>
         <th></th>
@@ -16,7 +16,7 @@
     <tbody>
       <% @users.each do |user| %>
       <tr>
-        <td></td>
+        <td><%= image_tag user.get_profile_image(50,50)%></td>
         <td><%= user.name %></td>
         <td><%= user.introduction %></td>
         <td><%= link_to'詳細',public_user_path(user.id )%></td>

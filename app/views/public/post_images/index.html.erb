@@ -29,7 +29,7 @@
     <tbody>
       <% @post_images.each do |post_image|%>
       <tr>
-        <td></td>
+        <td><%= image_tag post_image.get_image(100,100) %></td>
         <td><%= post_image.flower %></td>
         <td><%= post_image.field %></td>
         <td><%= post_image.day %></td>

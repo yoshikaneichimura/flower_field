@@ -23,6 +23,10 @@
 
    <% end %>
 
+    <p>画像</p>
+
+    <p><%= f.file_field :image, accept: "image/*" %></p>
+
     <p><strong>いつ？</strong></p>
 
     <p><%= f.text_field :day %></p>

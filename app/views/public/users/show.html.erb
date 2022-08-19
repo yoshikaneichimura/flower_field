@@ -9,15 +9,15 @@
 
 <div>
 
-    <p>IMAGE</p>
+    <p><strong>Image</strong></p>
 
-    <p>IMAGE</p>
+    <p><%= image_tag @user.get_profile_image(200,200)%></p>
 
-    <p>Name</p>
+    <p><strong>Name</strong></p>
 
     <p><%= @user.name %></p>
 
-    <p>Introduction</p>
+    <p><strong>Introduction</strong></p>
 
     <p><%= @user.introduction %></p>
 
@@ -32,17 +32,17 @@
     <thead>
       <tr>
         <th>Image</th>
-        <th>花</th>
-        <th>場所</th>
-        <th>月日</th>
-        <th>地域</th>
-        <th>詳細</th>
+        <th>Flower</th>
+        <th>Field</th>
+        <th>Day</th>
+        <th>Area</th>
+        <th>Detail</th>
       </tr>
     </thead>
     <tbody>
       <% @post_images.each do |post_image|%>
       <tr>
-        <td></td>
+        <td><%= image_tag post_image.get_image(50,50)%></td>
         <td><%= post_image.flower %></td>
         <td><%= post_image.field %></td>
         <td><%= post_image.day %></td>
