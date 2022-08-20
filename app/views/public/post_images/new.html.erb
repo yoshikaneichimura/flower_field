@@ -23,7 +23,7 @@
 
    <% end %>
 
-    <p><strong>画像</strong></p><strong>
+    <p><strong>画像</strong></p>
 
     <p><%= f.file_field :image, accept: "image/*" %></p>
 
@@ -43,10 +43,6 @@
 
   <div>
 
-    <p><strong>何分咲き？</strong></p>
-
-    <p><%= f.text_field :star %></p>
-
     <p><strong>住所など分かりましたらお願いします。</strong>＜任意＞</p>
 
     <p><%= f.text_area :address %></p>
@@ -57,6 +53,27 @@
 
     <%= f.submit '投稿' %>
 
-  <% end %>
+    <p><strong>何分咲き？</strong></p>
+
+    <div id="star">
+       <%= f.label :star,'開花' %>
+       <%= f.hidden_field :star, id: :review_star %>
+    </div>
+
+       <script>
+         $(function(){
+            $('#star').raty({
+              size    :  36,
+              starOff :  '<%= asset_path('star-off.png') %>',
+              starOn  :  '<%= asset_path('star-on.png') %>',
+
+              scoreName: 'post_image[star]',
+              targetScore: '#review_star',
+              half: false,
+            });
+         });
+       </script>
+
+     <% end %>
 
 </div>

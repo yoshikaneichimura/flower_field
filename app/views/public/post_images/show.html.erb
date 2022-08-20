@@ -26,8 +26,21 @@
     <p><strong>Day</strong></p>
     <p><%= @post_image.day %></p>
 
-    <p><strong>Reviwe</strong></p>
-    <p><%= @post_image.star %></p>
+    <p><strong>Review</strong></p>
+    <div id = "star-rate<%= @post_image.id %>"></div>
+
+    <script>
+      $(function(){
+        $('#star-rate<%= @post_image.id%>').raty({
+          size     :36,
+          starOff  : '<%= asset_path('star-off.png')%>',
+          starOn   : '<%= asset_path('star-on.png')%>',
+          half     : false,
+          readOnly: true,
+          score: <%= @post_image.star %>,
+          });
+      });
+    </script>
 
     <p><strong>Adress</strong></p>
     <p><%= @post_image.address %></p>

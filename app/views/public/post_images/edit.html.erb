@@ -7,7 +7,7 @@
 
   <%= form_with model: @post_image,url: public_post_image_path,method: :patch do |f| %>
 
-  <h3>「いつ？どこで？どんな花が？」</h3>
+  <h3>「いつ？どこで？どんな花が、、、」</h3>
 
   <p><strong>地域</strong></p>
 
@@ -23,7 +23,7 @@
 
    <% end %>
 
-    <p>画像</p>
+    <p><strong>画像</strong></p>
 
     <p><%= f.file_field :image, accept: "image/*" %></p>
 
@@ -43,10 +43,6 @@
 
   <div>
 
-    <p><strong>何分咲き？</strong></p>
-
-    <p><%= f.text_field :star %></p>
-
     <p><strong>住所など分かりましたらお願いします。</strong>＜任意＞</p>
 
     <p><%= f.text_area :address %></p>
@@ -55,8 +51,29 @@
 
     <p><%= f.text_area :comment %></p>
 
-    <%= f.submit '投稿' %>
+    <%= f.submit '編集' %>
 
-  <% end %>
+    <p><strong>何分咲き？</strong></p>
+
+    <div id="star">
+       <%= f.label :star,'開花' %>
+       <%= f.hidden_field :star, id: :review_star %>
+    </div>
+
+       <script>
+         $(function(){
+            $('#star').raty({
+              size    :  36,
+              starOff :  '<%= asset_path('star-off.png') %>',
+              starOn  :  '<%= asset_path('star-on.png') %>',
+
+              scoreName: 'post_image[star]',
+              targetScore: '#review_star',
+              half: false,
+            });
+         });
+       </script>
+
+     <% end %>
 
 </div>
