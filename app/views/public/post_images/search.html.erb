@@ -1,0 +1,51 @@
+<h3>検索結果</h3>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Flower</th>
+        <th>Field</th>
+        <th>Day</th>
+        <th>Area</th>
+        <th>Review</th>
+        <th>User</th>
+        <th>Show</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @post_images.each do |post_image|%>
+      <tr>
+        <td><%= image_tag post_image.get_image(100,100) %></td>
+        <td><%= post_image.flower %></td>
+        <td><%= post_image.field %></td>
+        <td><%= post_image.day %></td>
+
+        <td><% post_image.tags.each do |tag|%>
+              <%= tag.area %>
+            <% end %>
+        </td>
+        <td>
+          <div id="star-rate<%= post_image.id %>"></div>
+
+            <script>
+              $(function(){
+                $('#star-rate<%= post_image.id %>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>' ,
+                  half      : false,
+                  readOnly  : true,
+                  score: <%= post_image.star %>,
+                });
+              });
+            </script>
+        </td>
+        <td><%= post_image.user.name %></td>
+        <td><%= link_to'詳細',public_post_image_path(post_image.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -4,7 +4,6 @@ class Public::PostImagesController < ApplicationController
   end
 
   def index
-      @post_images = PostImage.all
       @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all
   end
 
@@ -33,6 +32,10 @@ class Public::PostImagesController < ApplicationController
     post_image = PostImage.find(params[:id])
     post_image.destroy
     redirect_to public_post_images_path
+  end
+
+  def search
+     @post_images = PostImage.search(params[:search])
   end
 
   private

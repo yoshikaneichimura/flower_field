@@ -32,6 +32,20 @@
       </nav>
     </header>
 
+    <% if user_signed_in? %>
+
+      <h3>花の名前で検索</h3>
+
+      <%= form_tag(public_search_path,method: :get) do %>
+
+        <%= text_field_tag :search %>
+
+        <%= submit_tag 'Search',:name => nil %>
+
+      <% end %>
+
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

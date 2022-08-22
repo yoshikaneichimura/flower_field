@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources:post_images
+    get 'search' => 'post_images#search'
   end
 
   devise_for :users,controllers:{
