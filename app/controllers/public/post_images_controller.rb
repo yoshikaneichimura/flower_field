@@ -9,6 +9,8 @@ class Public::PostImagesController < ApplicationController
 
   def show
     @post_image = PostImage.find(params[:id])
+    @post_comment = PostComment.new
+
   end
 
   def edit
@@ -16,7 +18,7 @@ class Public::PostImagesController < ApplicationController
   end
 
   def create
-    pp@post_image = PostImage.new(post_image_params)
+    @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     @post_image.save
     redirect_to public_post_images_path

@@ -1,21 +1,31 @@
 <h1>Public::Users#edit</h1>
 <p>Find me in app/views/public/users/edit.html.erb</p>
 
+<h3>Editing User Detail</h3>
+
 <div>
 
   <%= form_with model: @user,url: public_user_path(@user.id),method: :patch do |f| %>
 
-    <p>IMAGE</p>
+    <p><strong>Profile image</strong></p>
 
     <p><%= f.file_field :profile_image,accept: "image/*" %></p>
 
-    <p>Name</p>
+    <p><strong>Name</strong></p>
 
     <p><%= f.text_field :name %></p>
 
-    <p>Introduction</p>
+    <p><strong>Introduction</strong></p>
 
     <p><%= f.text_area :introduction %></p>
+
+    <p><strong>Mail address</strong></p>
+
+    <p><%= f.text_field :email %></p>
+
+    <p><strong>Password</strong></p>
+
+    <p><%= f.text_field :encrypted_password %></p>
 
     <p><%= f.submit '編集する'%></p>
 

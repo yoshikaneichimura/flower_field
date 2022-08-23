@@ -5,19 +5,18 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'about'=> 'homes#about',as: 'about'
-  end
 
-  namespace :public do
-    resources:users,only:[:index,:show,:edit,:update,:destroy]
+    resources :users, only: [:index,:show,:edit,:update,:destroy]
     get 'unsubscribe' => 'users#unsubscribe'
     patch 'withdraw' => 'users#withdraw'
-  end
 
-  namespace :public do
-    resources:post_images
+    resources :post_images
+
     get 'search' => 'post_images#search'
-  end
 
+    resources :post_comments, only: [:create,:destroy]
+  end
+  
   devise_for :users,controllers:{
     registrations:"public/registrations",
     sessions:'public/sessions'

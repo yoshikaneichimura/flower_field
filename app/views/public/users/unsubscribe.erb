@@ -1,11 +1,13 @@
 <h3>退会確認画面</h3>
 
 <div>
-  
+
   <h3>本当に退会しますか？</h3>
-  
+
   <p><%= link_to '退会しません',public_user_path(@user.id) %></p>
-  
+
   <p><%= link_to '退会します',public_withdraw_path,method: :patch %></p>
-  
+
 </div>
+
+<p>一度退会させますと、投稿した内容の閲覧ができなくなります。</p>

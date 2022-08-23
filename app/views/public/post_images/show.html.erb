@@ -13,6 +13,7 @@
 <div>
 
     <p><strong>Area</strong></p>
+
     <p><% @post_image.tags.each do |tag| %>
         <%= tag.area %>
        <% end %></p>
@@ -54,6 +55,40 @@
   <% if @post_image.user == current_user %>
     <p><%= link_to'編集',edit_public_post_image_path(@post_image.id) %></p>
     <p><%= link_to'削除',public_post_image_path(@post_image.id),method: :delete,"data-confirm"=>"本当に削除しますか？" %></p>
+  <% end %>
+
+</div>
+
+<div>
+
+  <p>コメント件数：<%= @post_image.post_comments.count %></p>
+
+  <% @post_image.post_comments.each do |post_comment| %>
+
+    <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
+
+    <p><%= post_comment.user.name %></p>
+
+    <p><%= post_comment.created_at.strftime('%Y/%m/%d')%><%= post_comment.comment %></p>
+
+    <% if post_comment.user == current_user %>
+      <%= link_to"削除",public_post_comment_path(post_comment.id),method: :delete %>
+    <% end %>
+
+</div>
+
+  <% end %>
+
+<div>
+
+  <%= form_with model: @post_comment, url: public_post_comments_path  do |f| %>
+
+    <%= hidden_field_tag :post_image_id, @post_image.id %>
+
+    <%= f.text_area :comment,rows:'5',placeholder:"コメントをここに" %>
+
+    <%= f.submit"Create" %>
+
   <% end %>
 
 </div>
