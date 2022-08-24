@@ -1,31 +1,7 @@
 <h1>Public::Users#show</h1>
 <p>Find me in app/views/public/users/show.html.erb</p>
 
-<% if @user == current_user %>
-  <h3>My Page</h3>
-<% else %>
-  <h3>User Detail</h3>
-<% end %>
-
-<div>
-
-    <p><strong>Image</strong></p>
-
-    <p><%= image_tag @user.get_profile_image(200,200)%></p>
-
-    <p><strong>Name</strong></p>
-
-    <p><%= @user.name %></p>
-
-    <p><strong>Introduction</strong></p>
-
-    <p><%= @user.introduction %></p>
-
-  <% if @user == current_user %>
-    <p><%= link_to"プロフィールを編集する",edit_public_user_path(@user.id) %></p>
-  <% end %>
-
-</div>
+<%= render 'public/post_images/list',user: @user %>
 
 <div>
   <table>
@@ -39,6 +15,7 @@
         <th>Review</th>
         <th>User</th>
         <th>Show</th>
+        <th>Comment</th>
       </tr>
     </thead>
     <tbody>
@@ -71,6 +48,7 @@
         </td>
         <td><%= post_image.user.name %></td>
         <td><%= link_to'詳細',public_post_image_path(post_image.id) %></td>
+        <td><%= link_to "#{post_image.post_comments.count}コメント",public_post_image_path(post_image.id)%></td>
       </tr>
       <% end %>
     </tbody>

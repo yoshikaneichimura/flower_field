@@ -1,0 +1,27 @@
+
+<div>
+
+<% if user == current_user %>
+  <h3>Your profile</h3>
+<% else %>
+  <h3>User detail</h3>
+<% end %>
+
+    <p><strong>Image</strong></p>
+
+    <p><%= image_tag user.get_profile_image(200,200)%></p>
+
+    <p><strong>Name</strong></p>
+
+    <p><%= user.name %></p>
+
+    <p><strong>Introduction</strong></p>
+
+    <p><%= user.introduction %></p>
+
+  <% if user == current_user %>
+    <p><%= link_to"プロフィールを編集する",edit_public_user_path(user.id) %></p>
+    <p><%= link_to'花の咲く場所を投稿',new_public_post_image_path %></p>
+  <% end %>
+
+</div>

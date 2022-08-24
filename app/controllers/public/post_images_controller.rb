@@ -4,7 +4,9 @@ class Public::PostImagesController < ApplicationController
   end
 
   def index
-      @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all
+    @user = current_user
+    @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all
+
   end
 
   def show

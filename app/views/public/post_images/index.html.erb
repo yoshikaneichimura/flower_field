@@ -1,6 +1,8 @@
 <h1>Public::PostImages#index</h1>
 <p>Find me in app/views/public/post_images/index.html.erb</p>
 
+<%= render 'list',user: @user %>
+
 <h3>All Flower Field</h3>
 
 <%= form_tag public_post_images_path, method: :get, class: 'boards_searchForm' do %>
@@ -24,14 +26,16 @@
         <th>Area</th>
         <th>Review</th>
         <th>User</th>
-        <th>Show</th>
         <th>Comment</th>
       </tr>
     </thead>
     <tbody>
       <% @post_images.each do |post_image|%>
       <tr>
-        <td><%= image_tag post_image.get_image(100,100) %></td>
+        <td><%= link_to public_post_image_path(post_image.id) do  %>
+              <%= image_tag post_image.get_image(100,100) %>
+            <% end %>
+        </td>
         <td><%= post_image.flower %></td>
         <td><%= post_image.field %></td>
         <td><%= post_image.day %></td>
@@ -57,7 +61,6 @@
             </script>
         </td>
         <td><%= post_image.user.name %></td>
-        <td><%= link_to'詳細',public_post_image_path(post_image.id) %></td>
         <td><%= link_to "#{post_image.post_comments.count}コメント",public_post_image_path(post_image.id)%></td>
       </tr>
       <% end %>

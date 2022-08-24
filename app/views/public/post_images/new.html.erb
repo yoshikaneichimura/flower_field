@@ -7,7 +7,8 @@
 
   <%= form_with model: @post_image,url: public_post_images_path,method: :post do |f| %>
 
-  <h3>「いつ？どこで？どんな花が、、、」</h3>
+  <p>「いつ？どこで？どんな花が、、、」</p>
+  <p>あなたが見つけた、「花の咲く場所」を教えて下さい。</p>
 
   <p><strong>地域</strong></p>
 
@@ -28,14 +29,17 @@
     <p><%= f.file_field :image, accept: "image/*" %></p>
 
     <p><strong>いつ？</strong></p>
+    <p>2020年1月1日=> 20200101 </p>
 
     <p><%= f.text_field :day %></p>
 
     <p><strong>どこで？</strong></p>
+    <p>＜花の名所、植物園、公園、神社、寺、など＞</p>
 
     <p><%= f.text_field :field %></p>
 
     <p><strong>どんな花が？</strong></p>
+    <p>＜桜、躑躅、紫陽花、など＞</p>
 
     <p><%= f.text_field :flower %></p>
 
@@ -44,10 +48,12 @@
   <div>
 
     <p><strong>住所など分かりましたらお願いします。</strong>＜任意＞</p>
+    <p>＜東京都台東区上野1-1-1、など＞</p>
 
     <p><%= f.text_area :address %></p>
 
     <p><strong>お気付きな事がありましたらお願いします。</strong>＜任意＞</p>
+    <p>＜交通、近隣情報、営業時間、入園料、設備、など＞</p>
 
     <p><%= f.text_area :comment %></p>
 
@@ -56,7 +62,7 @@
     <p><strong>何分咲き？</strong></p>
 
     <div id="star">
-       <%= f.label :star,'開花' %>
+       <%= f.label :star,'開花状況' %>
        <%= f.hidden_field :star, id: :review_star %>
     </div>
 

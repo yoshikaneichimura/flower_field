@@ -14,10 +14,14 @@
     <header>
       <nav>
         <ul>
+          <div>
+            <%= image_tag("logo.png")%>
+            <h3>Flower Field</h3>
+          </div>
             <% if user_signed_in? %>
-          <li><%= link_to'New Flower Field',new_public_post_image_path %></li>
-          <li><%= link_to'All Flower Fields',public_post_images_path %></li>
-          <li><%= link_to'All Users ',public_users_path %></li>
+          <li><%= link_to'My page',public_user_path(current_user.id)%></li>
+          <li><%= link_to'Flower Fields',public_post_images_path %></li>
+          <li><%= link_to'Users ',public_users_path %></li>
           <li><%= link_to'LOG OUT',destroy_user_session_path, method: :delete %></li>
             <% else %>
           <li><%= link_to'TOP',root_path %></li>
@@ -34,7 +38,7 @@
 
     <% if user_signed_in? %>
 
-      <h3>花の名前で検索</h3>
+      <h3>花の名前を検索</h3>
 
       <%= form_tag(public_search_path,method: :get) do %>
 

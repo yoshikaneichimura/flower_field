@@ -1,6 +1,8 @@
 <h1>Public::PostImages#show</h1>
 <p>Find me in app/views/public/post_images/show.html.erb</p>
 
+<%= render 'list',user: @post_image.user %>
+
 <h3>Flower Field Detail</h3>
 
 <div>
@@ -55,6 +57,28 @@
   <% if @post_image.user == current_user %>
     <p><%= link_to'編集',edit_public_post_image_path(@post_image.id) %></p>
     <p><%= link_to'削除',public_post_image_path(@post_image.id),method: :delete,"data-confirm"=>"本当に削除しますか？" %></p>
+  <% end %>
+
+</div>
+
+<div>
+
+  <% if @post_image.favorited_by?(current_user) %>
+
+  <p>
+    <%= link_to public_favorites_path(@post_image),method: :delete do %>
+    ♥<%= @post_image.favorites.count %>いいね
+    <% end %>
+  </p>
+
+  <% else %>
+
+  <p>
+    <%= link_to public_favorites_path(@post_image),method: :post do %>
+    ♡<%= @post_image.favorites.count %>いいね
+  </p>
+    <% end %>
+
   <% end %>
 
 </div>

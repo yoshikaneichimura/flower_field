@@ -15,8 +15,10 @@ Rails.application.routes.draw do
     get 'search' => 'post_images#search'
 
     resources :post_comments, only: [:create,:destroy]
+
+    resource :favorites, only:[:create,:destroy]
   end
-  
+
   devise_for :users,controllers:{
     registrations:"public/registrations",
     sessions:'public/sessions'
