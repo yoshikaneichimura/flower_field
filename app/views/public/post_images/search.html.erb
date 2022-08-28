@@ -11,13 +11,15 @@
         <th>Area</th>
         <th>Review</th>
         <th>User</th>
-        <th>Show</th>
       </tr>
     </thead>
     <tbody>
       <% @post_images.each do |post_image|%>
       <tr>
-        <td><%= image_tag post_image.get_image(100,100) %></td>
+        <td><%= link_to public_post_image_path(post_image.id) do %>
+              <%= image_tag post_image.get_image(100,100) %>
+            <% end %>
+        </td>
         <td><%= post_image.flower %></td>
         <td><%= post_image.field %></td>
         <td><%= post_image.day %></td>
@@ -43,8 +45,6 @@
             </script>
         </td>
         <td><%= post_image.user.name %></td>
-        <td><%= link_to'詳細',public_post_image_path(post_image.id) %></td>
-      </tr>
       <% end %>
     </tbody>
   </table>

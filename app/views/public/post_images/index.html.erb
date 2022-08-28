@@ -60,7 +60,7 @@
               });
             </script>
         </td>
-        <td><%= post_image.user.name %></td>
+        <td><%= link_to"#{post_image.user.name}",public_user_path(post_image.user.id) %></td>
         <td><%= link_to "#{post_image.post_comments.count}コメント",public_post_image_path(post_image.id)%></td>
       </tr>
       <% end %>

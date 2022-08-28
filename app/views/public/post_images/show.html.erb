@@ -3,12 +3,12 @@
 
 <%= render 'list',user: @post_image.user %>
 
-<h3>Flower Field Detail</h3>
+<h3>Flower field detail</h3>
 
 <div>
 
   <p><strong>Image</strong></p>
-  <p><%= image_tag @post_image.get_image(200,200)%></p>
+  <p><%= image_tag @post_image.get_image(300,300)%></p>
 
 </div>
 
@@ -60,7 +60,7 @@
   <% end %>
 
 </div>
-
+<!--いいね機能-->
 <div>
 
   <% if @post_image.favorited_by?(current_user) %>
@@ -82,37 +82,51 @@
   <% end %>
 
 </div>
-
+<!--いいね機能-->
+<!--コメント機能-->
 <div>
-
   <p>コメント件数：<%= @post_image.post_comments.count %></p>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post_image.post_comments.each do |post_comment| %>
+        <tr>
+          <td><%= link_to public_user_path(post_comment.user.id) do %>
+                <%= image_tag post_comment.user.get_profile_image(50,50) %>
+              <% end %>
+          </td>
+          <td><%= post_comment.user.name %></td>
+          <td><%= post_comment.comment %>
+              <%= post_comment.created_at.strftime('%Y/%m/%d')%>
+           <% if post_comment.user == current_user %>
+            <%= link_to"削除",public_post_comment_path(post_comment.id),method: :delete %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-  <% @post_image.post_comments.each do |post_comment| %>
+  <div>
 
-    <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
+    <%= form_with model: @post_comment, url: public_post_comments_path  do |f| %>
 
-    <p><%= post_comment.user.name %></p>
+      <%= hidden_field_tag :post_image_id, @post_image.id %>
 
-    <p><%= post_comment.created_at.strftime('%Y/%m/%d')%><%= post_comment.comment %></p>
+      <%= f.text_area :comment,rows:'5',placeholder:"コメントをここに" %>
 
-    <% if post_comment.user == current_user %>
-      <%= link_to"削除",public_post_comment_path(post_comment.id),method: :delete %>
+      <%= f.submit"Create" %>
+
     <% end %>
 
+  </div>
 </div>
-
-  <% end %>
-
-<div>
-
-  <%= form_with model: @post_comment, url: public_post_comments_path  do |f| %>
-
-    <%= hidden_field_tag :post_image_id, @post_image.id %>
-
-    <%= f.text_area :comment,rows:'5',placeholder:"コメントをここに" %>
-
-    <%= f.submit"Create" %>
-
-  <% end %>
-
-</div>
+<!--コメント機能-->
