@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+   namespace :admin do
+    resources :users, only:[:index, :show, :edit, :update]
+    resources :post_images, only:[:index, :show, :edit, :update, :destroy]
+    resources :post_comments, only: [:destroy]
+  end
 
   namespace :public do
     get 'relationships/followings'
@@ -21,9 +26,9 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
 
     resource :favorites, only:[:create, :destroy]
-    
+
     resources :relationships, only: [:create, :destroy]
-    
+
    get 'followings' => 'relationships#followings', as: 'followings'
    get 'followers'  => 'relationships#followers', as: 'followers'
   end

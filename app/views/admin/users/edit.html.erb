@@ -1,0 +1,43 @@
+<h1>Admin::Users#edit</h1>
+<p>Find me in app/views/admin/users/edit.html.erb</p>
+
+<h3>ユーザー情報の編集</h3>
+
+　<div>
+
+  <%= form_with model: @user,url: admin_user_path(@user.id),method: :patch do |f| %>
+
+    <p><strong>Profile image</strong></p>
+
+    <p><%= f.file_field :profile_image,accept: "image/*" %></p>
+
+    <p><strong>Name</strong></p>
+
+    <p><%= f.text_field :name %></p>
+
+    <p><strong>Introduction</strong></p>
+
+    <p><%= f.text_area :introduction %></p>
+
+    <p><strong>Mail address</strong></p>
+
+    <p><%= f.text_field :email %></p>
+
+    <p><strong>Password</strong></p>
+
+    <p><%= f.text_field :encrypted_password %></p>
+
+    <p><strong>会員情報</strong><p>
+
+    <p><%= f.radio_button :is_active,"true" %>
+       <%= f.label :is_active,"有効会員"%>
+
+       <%= f.radio_button :is_active,"false" %>
+       <%= f.label :is_active,"退会済み" %>
+    </p>
+
+    <p><%= f.submit '編集する'%></p>
+
+  <% end %>
+
+</div>

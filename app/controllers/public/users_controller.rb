@@ -25,13 +25,10 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
-    @customer.update(is_active: false)
+    user = current_user
+    user.update(is_active: false)
     reset_session
     redirect_to root_path
-  end
-
-  def desroy
-
   end
 
   private

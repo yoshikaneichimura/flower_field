@@ -36,6 +36,8 @@
 
           <li>作業用</li>
           <li><%= link_to'ADMIN LOG IN',new_admin_session_path %></li>
+          <li><%= link_to"ADMIN Users",admin_users_path %></li>
+          <li><%= link_to"ADMIN Post_images",admin_post_images_path %></li>
         </ul>
       </nav>
 
@@ -52,18 +54,12 @@
 
           <% end %>
 
+          <% else %>
+           <h3><%= link_to'ゲストログインはこちら',public_homes_guest_sign_in_path, method: :post %></h3>
         <% end %>
       </div>
       <!--検索機能-->
     </header>
-
-    <!--ゲストログイン機能-->
-    <div>
-     <% if user_signed_in? %>
-      <h3><%= link_to'ゲストログインはこちら',public_homes_guest_sign_in_path, method: :post %></h3>
-     <% end %>
-    </div>
-    <!--ゲストログイン機能-->
 
     <%= yield %>
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+   before_action :reject_inactive_user, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -25,9 +25,11 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   protected
-  
-  def user_state
-    @user = User.find_by(email: params[:user][:email])  
+
+
+
+  def reject_inactive_user
+    @user = User.find_by(email: params[:user][:email])
     if @user
       if @user.valid_password?(params[:user][:password]) && !@user.is_active
         redirect_to root_path
