@@ -1,0 +1,53 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Flower</th>
+        <th>Field</th>
+        <th>Day</th>
+        <th>Area</th>
+        <th>Review</th>
+        <th>User</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% post_images.each do |post_image|%>
+      <tr>
+        <td><%= link_to admin_post_image_path(post_image.id) do  %>
+              <%= image_tag post_image.get_image(100,100) %>
+            <% end %>
+        </td>
+        <td><%= post_image.flower %></td>
+        <td><%= post_image.field %></td>
+        <td><%= post_image.day %></td>
+
+        <td><% post_image.tags.each do |tag|%>
+              <%= tag.area %>
+            <% end %>
+        </td>
+        <td>
+          <div id="star-rate<%= post_image.id %>"></div>
+
+            <script>
+              $(function(){
+                $('#star-rate<%= post_image.id %>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>' ,
+                  half      : false,
+                  readOnly  : true,
+                  score: <%= post_image.star %>,
+                });
+              });
+            </script>
+        </td>
+        <td><%= link_to"#{post_image.user.name}",admin_user_path(post_image.user.id) %></td>
+        <td><%= link_to "#{post_image.post_comments.count}コメント",admin_post_image_path(post_image.id)%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate post_images %>
+</div>

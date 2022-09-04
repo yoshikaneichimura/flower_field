@@ -13,55 +13,74 @@
   <body>
     <header>
       <nav>
+        
+        <% if user_signed_in? %>
         <ul>
           <div>
             <%= image_tag("logo.png") %><h3>Flower Field</h3>
           </div>
-
-            <% if user_signed_in? %>
-
           <li><%= link_to'My page',public_user_path(current_user.id)%></li>
           <li><%= link_to'Flower fields',public_post_images_path %></li>
           <li><%= link_to'Users ',public_users_path %></li>
           <li><%= link_to'Log out',destroy_user_session_path, method: :delete %></li>
+        </ul>
+        <div>
+          <lable>花の名前を検索</lable>
+            <%= form_tag(public_search_path, :method => 'get') do %>
 
-            <% else %>
+              <%= text_field_tag :search %>
 
+              <%= submit_tag 'Search', :name => nil %>
+
+          <% end %>
+        </div>
+       
+        <% else %>
+        <ul>
+          <div>
+            <%= image_tag("logo.png") %><h3>Flower Field</h3>
+          </div>
           <li><%= link_to'Top',root_path %></li>
           <li><%= link_to'About',public_about_path %></li>
           <li><%= link_to'User log in',new_user_session_path %></li>
           <li><%= link_to'User sign up',new_user_registration_path %></li>
-
-            <% end %>
-
+        </ul>
+       
+        <% end %>
+        
+        <ul>
           <li>作業用</li>
           <li><%= link_to'ADMIN LOG IN',new_admin_session_path %></li>
           <li><%= link_to"ADMIN Users",admin_users_path %></li>
           <li><%= link_to"ADMIN Post_images",admin_post_images_path %></li>
         </ul>
-      </nav>
-
-      <!--検索機能-->
-      <div>
-        <% if user_signed_in? %>
-
-        <lable>花の名前を検索</lable>
-          <%= form_tag(public_search_path,method: :get) do %>
+       
+          <lable>ユーザーを検索</lable>
+          <%= form_tag(admin_search_path,method: :get) do %>
 
             <%= text_field_tag :search %>
 
             <%= submit_tag 'Search',:name => nil %>
 
           <% end %>
-
-          <% else %>
-           <h3><%= link_to'ゲストログインはこちら',public_homes_guest_sign_in_path, method: :post %></h3>
-        <% end %>
-      </div>
-      <!--検索機能-->
+      </nav>
     </header>
 
-    <%= yield %>
+    <main>
+      <% if user_signed_in? %>
+      <h3><%= link_to'ゲストログインはこちら',public_homes_guest_sign_in_path, method: :post %></h3>
+     <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer>
+
+      ©tefutefu.inc
+
+    </footer>
+
 
   </body>
+
 </html>

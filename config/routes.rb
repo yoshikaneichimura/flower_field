@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
 
-   namespace :admin do
+  namespace :admin do
     resources :users, only:[:index, :show, :edit, :update]
     resources :post_images, only:[:index, :show, :edit, :update, :destroy]
+    get 'search' => 'users#search'
     resources :post_comments, only: [:destroy]
   end
 
-  namespace :public do
-    get 'relationships/followings'
-    get 'relationships/followers'
-  end
   root to:'public/homes#top'
 
   namespace :public do
+
     get 'about'=> 'homes#about',as: 'about'
 
     resources :users, only: [:index, :show, :edit, :update, :destroy]
@@ -20,17 +18,17 @@ Rails.application.routes.draw do
     patch 'withdraw' => 'users#withdraw'
 
     resources :post_images
-
     get 'search' => 'post_images#search'
 
     resources :post_comments, only: [:create, :destroy]
-
     resource :favorites, only:[:create, :destroy]
-
     resources :relationships, only: [:create, :destroy]
 
-   get 'followings' => 'relationships#followings', as: 'followings'
-   get 'followers'  => 'relationships#followers', as: 'followers'
+    get 'relationships/followings'
+    get 'relationships/followers'
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers'  => 'relationships#followers', as: 'followers'
+    
   end
 
   devise_for :users,controllers:{

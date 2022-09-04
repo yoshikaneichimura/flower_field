@@ -1,11 +1,9 @@
 <h1>Admin::Users#show</h1>
 <p>Find me in app/views/admin/users/show.html.erb</p>
 
-<h3>管理者ページ</h3>
-
 <div>
 
-  <h3>User detail</h3>
+  <h3>投稿者情報</h3>
 
     <p><strong>Image</strong></p>
 
@@ -18,7 +16,9 @@
     <p><strong>Introduction</strong></p>
 
     <p><%= @user.introduction %></p>
-    
+
     <p><%= link_to"このユーサーの情報を編集する。",edit_admin_user_path(@user.id)%></p>
 
 </div>
+
+<%= render 'admin/post_images/post',post_images: @post_images %>

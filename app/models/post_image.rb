@@ -9,6 +9,11 @@ class PostImage < ApplicationRecord
 
   has_one_attached :image
 
+    validates :flower, presence: true
+    validates :field, presence: true
+    validates :day, presence: true
+    validates :star, presence: true
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

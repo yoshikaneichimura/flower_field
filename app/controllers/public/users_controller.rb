@@ -1,12 +1,12 @@
 class Public::UsersController < ApplicationController
   def index
     @user = current_user
-    @users = User.all
+    @users = User.page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images
+    @post_images = @user.post_images.page(params[:page])
   end
 
   def edit

@@ -1,7 +1,7 @@
 <h1>Admin::PostImages#edit</h1>
 <p>Find me in app/views/admin/post_images/edit.html.erb</p>
 
-<h3>ユーザーの投稿の編集</h3>
+<h3>投稿の編集</h3>
 
 <div>
 
@@ -9,7 +9,7 @@
 
   <p><strong>Area</strong></p>
 
-   <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :area ) do |tag| %>
+   <%= f.collection_select(:tag_ids, Tag.all, :id, :area ) do |tag| %>
 
      <%= tag.label do %>
 
@@ -74,3 +74,4 @@
 
      <% end %>
 </div>
+

@@ -3,6 +3,15 @@
 
 <h3>New Flower Field</h3>
 
+<% if @post_image.errors.any? %>
+  <%= @post_image.errors.count %>件のエラーが発生しました。
+  <ul>
+    <% @post_image.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div>
 
   <%= form_with model: @post_image,url: public_post_images_path,method: :post do |f| %>
@@ -12,26 +21,16 @@
 
   <p><strong>地域</strong></p>
 
-   <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :area ) do |tag| %>
-
-     <%= tag.label do %>
-
-      <%= tag.check_box %>
-
-      <%= tag.text %>
-
-     <% end %>
-
-   <% end %>
+   <%= f.collection_select(:tag_ids, Tag.all, :id, :area ) %>
 
     <p><strong>画像</strong></p>
 
-    <p><%= f.file_field :image, accept: "image/*" %></p>
+    <p><%= f.file_field :image,placeholder:"画像",accept: "image/*" %></p>
 
     <p><strong>いつ？</strong></p>
     <p>＜※ 2020年1月1日=> 20200101 ＞</p>
 
-    <p><%= f.text_field :day %></p>
+    <p><%= f.text_field :day ,placeholder:"20200101"%></p>
 
     <p><strong>どこで？</strong></p>
     <p>＜※ 花の名所、植物園、公園、神社、寺、など＞</p>

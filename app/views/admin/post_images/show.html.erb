@@ -1,26 +1,21 @@
 <h1>Admin::PostImages#show</h1>
 <p>Find me in app/views/admin/post_images/show.html.erb</p>
 
-
-
 <%= render 'public/post_images/list',user: @post_image.user %>
 
-<h3>Flower field detail</h3>
+<h3>投稿詳細</h3>
 
 <div>
-
   <p><strong>Image</strong></p>
   <p><%= image_tag @post_image.get_image(300,300)%></p>
-
 </div>
 
 <div>
 
     <p><strong>Area</strong></p>
-
     <p><% @post_image.tags.each do |tag| %>
         <%= tag.area %>
-       <% end %></p>
+       <% end %></p>」
 
     <p><strong>Flower</strong></p>
     <p><%= @post_image.flower %></p>
