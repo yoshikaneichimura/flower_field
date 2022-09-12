@@ -1,13 +1,20 @@
-<h3>退会確認画面</h3>
+<div class = "container" >
 
-<div>
+  <div class = "row" >
 
-  <h3>本当に退会しますか？</h3>
+    <div class = "mx-auto" >
 
-  <p><%= link_to '退会しません',public_user_path(@user.id) %></p>
+      <h3 class = "mt-3">退会確認画面</h3>
 
-  <p><%= link_to '退会します',public_withdraw_path,method: :patch %></p>
+      <h1 class = "mt-3"><strong>本当に退会しますか？</strong></h1>
+
+      <p class = "m-5"><%= link_to '退会しません',public_user_path(@user.id),class: "btn btn-primary" %> <%= link_to '退会します',public_withdraw_path,method: :patch,class: "btn btn-danger" %></p>
+
+      <h5>一度、退会させますと、投稿した内容の閲覧ができなくなります。</h5>
+
+
+    </div>
+
+  </div>
 
 </div>
-
-<p>一度退会させますと、投稿した内容の閲覧ができなくなります。</p>

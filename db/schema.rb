@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2022_08_24_112514) do
 
   create_table "post_images", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "tag_id", null: false
     t.string "flower", null: false
     t.string "field", null: false
     t.integer "day", null: false
@@ -77,15 +78,6 @@ ActiveRecord::Schema.define(version: 2022_08_24_112514) do
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "post_tags", force: :cascade do |t|
-    t.integer "post_image_id", null: false
-    t.integer "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_image_id"], name: "index_post_tags_on_post_image_id"
-    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -118,6 +110,4 @@ ActiveRecord::Schema.define(version: 2022_08_24_112514) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "post_tags", "post_images"
-  add_foreign_key "post_tags", "tags"
 end

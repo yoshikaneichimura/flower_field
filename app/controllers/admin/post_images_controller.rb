@@ -1,6 +1,7 @@
 class Admin::PostImagesController < ApplicationController
   def index
-    @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.page(params[:page])
+    @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all
+    @post_images = @post_images.page(params[:page]).per(25)
   end
 
   def show

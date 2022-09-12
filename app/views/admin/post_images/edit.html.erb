@@ -1,65 +1,55 @@
-<h1>Admin::PostImages#edit</h1>
-<p>Find me in app/views/admin/post_images/edit.html.erb</p>
+<div class = "container" >
 
-<h3>投稿の編集</h3>
+  <h3>投稿の編集</h3>
 
-<div>
+  <div class = "row" >
 
-  <%= form_with model: @post_image,url: admin_post_image_path,method: :patch do |f| %>
+    <div class = "col-lg-6" >
 
-  <p><strong>Area</strong></p>
+      <%= form_with model: @post_image,url: admin_post_image_path,method: :patch do |f| %>
 
-   <%= f.collection_select(:tag_ids, Tag.all, :id, :area ) do |tag| %>
+        <p><strong>Area</strong></p>
 
-     <%= tag.label do %>
+        <%= f.collection_select(:tag_id, Tag.all, :id, :area ) %>
 
-      <%= tag.check_box %>
+        <p><strong>Image</strong></p>
 
-      <%= tag.text %>
+        <p><%= f.file_field :image, accept: "image/*" %></p>
 
-     <% end %>
+        <p><strong>Day</strong></p>
 
-   <% end %>
+        <p><%= f.text_field :day %></p>
 
-    <p><strong>Image</strong></p>
+        <p><strong>Field</strong></p>
 
-    <p><%= f.file_field :image, accept: "image/*" %></p>
+        <p><%= f.text_field :field %></p>
 
-    <p><strong>Day</strong></p>
+        <p><strong>Flower</strong></p>
 
-    <p><%= f.text_field :day %></p>
+        <p><%= f.text_field :flower %></p>
 
-    <p><strong>Field</strong></p>
-
-    <p><%= f.text_field :field %></p>
-
-    <p><strong>Flower</strong></p>
-
-    <p><%= f.text_field :flower %></p>
-
-  </div>
-
-  <div>
-
-    <p><strong>Adress</strong></p>
-
-    <p><%= f.text_area :address %></p>
-
-    <p><strong>Comment</strong></p>
-
-    <p><%= f.text_area :comment %></p>
-
-    <%= f.submit '編集する' %>
-
-    <p><strong>何分咲き？</strong></p>
-
-    <div id="star">
-       <%= f.label :star,'開花状況' %>
-       <%= f.hidden_field :star, id: :review_star %>
     </div>
 
-       <script>
-         $(function(){
+    <div class = "col-lg-6" >
+
+        <p><strong>Adress</strong></p>
+
+        <p><%= f.text_area :address %></p>
+
+        <p><strong>Comment</strong></p>
+
+        <p><%= f.text_area :comment %></p>
+
+
+        <p><strong>何分咲き？</strong></p>
+
+        <div id="star">
+           <%= f.label :star,'開花状況' %>
+           <%= f.hidden_field :star, id: :review_star %>
+        </div>
+
+        <script>
+          $(function(){
             $('#star').raty({
               size    :  36,
               starOff :  '<%= asset_path('star-off.png') %>',
@@ -69,9 +59,16 @@
               targetScore: '#review_star',
               half: false,
             });
-         });
-       </script>
+          });
+        </script>
 
-     <% end %>
+        <%= f.submit '編集する',class: "btn btn-success m-3" %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
 </div>
 

@@ -1,43 +1,48 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class = "container" >
 
-<h3>投稿者情報の編集</h3>
+  <div class = "row" >
 
-　<div>
+    <div class = "mx-auto" >
 
-  <%= form_with model: @user,url: admin_user_path(@user.id),method: :patch do |f| %>
+       <h3>投稿者情報の編集</h3>
 
-    <p><strong>Profile image</strong></p>
+      <%= form_with model: @user,url: admin_user_path(@user.id),method: :patch do |f| %>
 
-    <p><%= f.file_field :profile_image,accept: "image/*" %></p>
+        <p><strong>Profile image</strong></p>
 
-    <p><strong>Name</strong></p>
+        <p><%= f.file_field :profile_image,accept: "image/*" %></p>
 
-    <p><%= f.text_field :name %></p>
+        <p><strong>Name</strong></p>
 
-    <p><strong>Introduction</strong></p>
+        <p><%= f.text_field :name %></p>
 
-    <p><%= f.text_area :introduction %></p>
+        <p><strong>Introduction</strong></p>
 
-    <p><strong>Mail address</strong></p>
+        <p><%= f.text_area :introduction %></p>
 
-    <p><%= f.text_field :email %></p>
+        <p><strong>Mail address</strong></p>
 
-    <p><strong>Password</strong></p>
+        <p><%= f.text_field :email %></p>
 
-    <p><%= f.text_field :encrypted_password %></p>
+        <p><strong>Password</strong></p>
 
-    <p><strong>会員情報</strong><p>
+        <p><%= f.text_field :encrypted_password %></p>
 
-    <p><%= f.radio_button :is_active,"true" %>
-       <%= f.label :is_active,"有効会員"%>
+        <p><strong>会員情報</strong><p>
 
-       <%= f.radio_button :is_active,"false" %>
-       <%= f.label :is_active,"退会済み" %>
-    </p>
+        <p><%= f.radio_button :is_active,"true" %>
+           <%= f.label :is_active,"有効会員"%>
 
-    <p><%= f.submit '編集する'%></p>
+           <%= f.radio_button :is_active,"false" %>
+           <%= f.label :is_active,"退会済み" %>
+        </p>
 
-  <% end %>
+        <p><%= f.submit '編集する',class: "btn btn-success" %></p>
+
+      <% end %>
+
+    </div>
+
+  </div>
 
 </div>

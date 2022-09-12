@@ -1,18 +1,16 @@
 class PostImage < ApplicationRecord
-  has_many :post_tags, dependent: :destroy
-  has_many :tags, through: :post_tags
-
   belongs_to :user
+  belongs_to :tag
 
   has_many :post_comments, dependent: :destroy
   has_many :favorites
 
   has_one_attached :image
 
-    validates :flower, presence: true
+    validates :flower,presence: true
     validates :field, presence: true
-    validates :day, presence: true
-    validates :star, presence: true
+    validates :day, numericality: {presence: true, message: "日付を入力して下さい"}
+    validates :star, numericality: {presence: true, message: "開花状況を入力して下さい"}
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

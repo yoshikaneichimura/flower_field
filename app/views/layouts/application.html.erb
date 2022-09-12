@@ -2,85 +2,126 @@
 <html>
   <head>
     <title>FlowerField</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name = "viewport" content = "width=device-width,initial-scale=1,maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= stylesheet_pack_tag 'application', media: 'all'%>
     <%= javascript_pack_tag 'application'%>
   </head>
 
-  <body>
-    <header>
-      <nav>
-        
+  <body class = "d-flex flex-column vh-100" >
+    <header class = "text-white" style = "background-color: #006a6c; text-ligth" >
+      <nav class = "navbar navbar-expand-lg navbar-dark" >
+        <div class = "container" >
+          <h1 style="font-family: 'Nunito', sans-serif;">Flower Field</h1>
+          <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target = "#navbarNavDropdown" aria-controls = "navbarNavDropdown" aria-expanded = "false" aria-label = "Toggle navigation">
+            <span class = "navbar-toggler-icon"></span>
+          </button>
+
+          <div class = "collapse navbar-collapse" id = "navbarNavDropdown">
+
+        <!--ユーザーログイン-->
         <% if user_signed_in? %>
-        <ul>
-          <div>
-            <%= image_tag("logo.png") %><h3>Flower Field</h3>
-          </div>
-          <li><%= link_to'My page',public_user_path(current_user.id)%></li>
-          <li><%= link_to'Flower fields',public_post_images_path %></li>
-          <li><%= link_to'Users ',public_users_path %></li>
-          <li><%= link_to'Log out',destroy_user_session_path, method: :delete %></li>
-        </ul>
-        <div>
-          <lable>花の名前を検索</lable>
-            <%= form_tag(public_search_path, :method => 'get') do %>
 
+        <ul class = "navbar-nav ml-auto" >
+          <li class = "nav-item" >
+            <%= link_to public_user_path(current_user.id),class: 'nav-link text-ligth' do %>
+             <i class="fas fa-user"></i> My page
+            <% end %>
+          </li>
+          <li class = "nav-item" >
+            <%= link_to public_post_images_path,class: 'nav-link text-ligth' do %>
+              <i class="fas fa-images"></i> Flower fields
+            <% end %>
+          </li>
+          <li class = "nav-item" >
+            <%= link_to public_users_path,class: 'nav-link text-ligth' do %>
+            <i class="fas fa-users"></i> Users
+              <% end %>
+          </li>
+          <li class = "nav-item" >
+            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-ligth' do %>
+              <i class="fas fa-user-lock"></i> log out
+            <% end %>
+          </li>
+        </ul>
+        <div class = "p-1">
+            <lable>花の名前を検索</lable><%= form_tag(public_search_path, :method => 'get') do %>
               <%= text_field_tag :search %>
-
-              <%= submit_tag 'Search', :name => nil %>
-
-          <% end %>
+              <%= submit_tag 'Search', :name => nil,class: "btn btn-danger" %>
+            <% end %>
         </div>
-       
-        <% else %>
-        <ul>
-          <div>
-            <%= image_tag("logo.png") %><h3>Flower Field</h3>
-          </div>
-          <li><%= link_to'Top',root_path %></li>
-          <li><%= link_to'About',public_about_path %></li>
-          <li><%= link_to'User log in',new_user_session_path %></li>
-          <li><%= link_to'User sign up',new_user_registration_path %></li>
+        <!--ユーザーログイン-->
+
+        <!--管理者ログイン-->
+        <% elsif admin_signed_in? %>
+
+        <ul class = "navbar-nav ml-auto" >
+          <li class = "nav-item" >
+            <%= link_to"投稿者 一覧",admin_users_path,class: 'nav-link text-ligth'  %>
+          </li>
+          <li class = "nav-item" >
+            <%= link_to"投稿一覧",admin_post_images_path,class: 'nav-link text-ligth'  %>
+          </li>
+          <li class = "nav-item" >
+            <%= link_to"ログアウト",destroy_admin_session_path, method: :delete ,class: 'nav-link text-ligth'%>
+          </li>
         </ul>
-       
-        <% end %>
-        
-        <ul>
-          <li>作業用</li>
-          <li><%= link_to'ADMIN LOG IN',new_admin_session_path %></li>
-          <li><%= link_to"ADMIN Users",admin_users_path %></li>
-          <li><%= link_to"ADMIN Post_images",admin_post_images_path %></li>
-        </ul>
-       
+        <div class = "p-3">
           <lable>ユーザーを検索</lable>
-          <%= form_tag(admin_search_path,method: :get) do %>
+            <%= form_tag(admin_search_path, :method => 'get') do %>
+              <%= text_field_tag :search %>
+              <%= submit_tag 'Search',:name => nil,class: "btn btn-danger" %>
+            <% end %>
+        </div>
+        <!--管理者ログイン-->
 
-            <%= text_field_tag :search %>
+        <% else %>
 
-            <%= submit_tag 'Search',:name => nil %>
+        <ul class = "navbar-nav ml-auto" >
+          <li class = "nav-item" >
+            <%= link_to root_path,class: 'nav-link text-ligth' do %>
+             <i class="fas fa-flag"></i> Home
+            <% end %>
+          </li>
+          <li class = "nav-item" >
+            <%= link_to public_about_path,class: 'nav-link text-ligth' do %>
+             <i class="fas fa-globe"></i> About
+            <% end %>
+          </li>
+          <li class = "nav-item" >
+            <%= link_to new_user_session_path,class: 'nav-link text-ligth' do %>
+             <i class="fas fa-user-lock"></i> Log in
+            <% end %>
+          </li>
+          <li class = "nav-item" >
+            <%= link_to new_user_registration_path,class: 'nav-link text-ligth' do %>
+             <i class="fas fa-user-plus"></i> Sign up
+            <% end %>
+          </li>
+        </ul>
 
-          <% end %>
+        <% end %>
+
       </nav>
-    </header>
+    </header><span class = "border-bottom border-danger"></span>
 
-    <main>
-      <% if user_signed_in? %>
-      <h3><%= link_to'ゲストログインはこちら',public_homes_guest_sign_in_path, method: :post %></h3>
-     <% end %>
+    <main class = "mb-auto bg-dark text-white-50" style="height: -webkit-fill-available;">
 
       <%= yield %>
+
     </main>
 
-    <footer>
-
-      ©tefutefu.inc
-
+    <span class = "border-top border-danger"></span><footer class = "text-white" style = "background-color: #006a6c;">
+      <div class = "container">
+        <div class = "row">
+          <div class = "mx-auto">
+            ©tefutefu.inc
+          </div>
+        </div>
+      </div>
     </footer>
 
-
   </body>
-
 </html>

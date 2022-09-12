@@ -1,24 +1,33 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
-
-<div>
+<div class = "container" >
 
   <h3>投稿者情報</h3>
 
-    <p><strong>Image</strong></p>
+  <div class = "row" >
 
-    <p><%= image_tag @user.get_profile_image(200,200)%></p>
+    <div class = "col-lg-4" >
 
-    <p><strong>Name</strong></p>
+      <p><strong>Image</strong></p>
 
-    <p><%= @user.name %></p>
+      <p><%= image_tag @user.get_profile_image(200,200)%></p>
 
-    <p><strong>Introduction</strong></p>
+      <p><strong>Name</strong></p>
 
-    <p><%= @user.introduction %></p>
+      <p><%= @user.name %></p>
 
-    <p><%= link_to"このユーサーの情報を編集する。",edit_admin_user_path(@user.id)%></p>
+      <p><strong>Introduction</strong></p>
+
+      <p><%= @user.introduction %></p>
+
+      <p><%= link_to"このユーサーの情報を編集する。",edit_admin_user_path(@user.id),class: "btn btn-info"%></p>
+
+    </div>
+
+    <div class = "col-lg-8" >
+
+      <%= render 'admin/post_images/post',post_images: @post_images %>
+
+    </div>
+
+  </div>
 
 </div>
-
-<%= render 'admin/post_images/post',post_images: @post_images %>

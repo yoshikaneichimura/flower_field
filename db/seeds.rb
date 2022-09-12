@@ -18,3 +18,6 @@ Tag.create([
   { area: '九州'},
   { area: '沖縄'},
   ])
+
+admin = Admin.new(:email => 'adminadmin@gmail.com', :password => "qqqqqq")
+admin.save!

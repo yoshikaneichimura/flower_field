@@ -6,7 +6,7 @@ class Public::PostImagesController < ApplicationController
   def index
     @user = current_user
     @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all
-    @post_images = @post_images.page(params[:page]).per(3)
+    @post_images = @post_images.page(params[:page]).per(5)
 
   end
 
@@ -50,7 +50,7 @@ class Public::PostImagesController < ApplicationController
   private
 
   def post_image_params
-    params.require(:post_image).permit(:flower,:field,:day,:star,:address,:comment,:image,tag_ids:[], )
+    params.require(:post_image).permit(:flower,:field,:day,:star,:address,:comment,:image, :tag_id )
   end
 
 end
