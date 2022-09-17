@@ -2,10 +2,12 @@
 
   <div class = "row">
 
-    <div class = "mx-auto">
-       <h3 class = "m-3">新規投稿</h3>
-       <h5 class = "m-1">「いつ？どこで？どんな花が、、、」</h5>
-       <h5 class = "mb-3">あなたが見つけた「花の咲く場所」を教えて下さい。</h5>
+    <div class = "mx-auto p-3">
+      <div class = "mx-auto">
+        <h3 style = "font-family: 'Kiwi Maru', serif;">新規投稿</h3>
+      </div>
+       <h5>「いつ？どこで？どんな花が、、、」</h5>
+       <h5>あなたが見つけた「花の咲く場所」を教えて下さい。</h5>
     </div>
 
   </div>
@@ -14,14 +16,14 @@
 
     <div class = "mx-auto">
 
-    <% if @post_image.errors.any? %>
-      <%= @post_image.errors.count %>件のエラーが発生しました。
-        <ul>
-          <% @post_image.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-    <% end %>
+      <% if @post_image.errors.any? %>
+        <%= @post_image.errors.count %>件のエラーが発生しました。
+          <ul>
+            <% @post_image.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
 
     </div>
 
@@ -30,35 +32,33 @@
   <div class = "row">
 
     <div class = "col-lg-6">
+
+      <div class = ml-5>
 
       <%= form_with model: @post_image,url: public_post_images_path,method: :post do |f| %>
 
-      <p><strong>地域</strong></p>
+          <p><strong>地域</strong></p>
+          <p><%= f.collection_select(:tag_id, Tag.all, :id, :area )%></p>
 
-        <p><%= f.collection_select(:tag_id, Tag.all, :id, :area )%></p>
+          <p><strong>画像</strong></p>
+          <p><%= f.file_field :image ,placeholder:"画像",accept: "image/*" %></p>
 
-        <p><strong>画像</strong></p>
+          <p><strong>いつ？</strong></p>
+          <p><%= f.text_field :day ,placeholder:"20200101"%></p>
 
-        <p><%= f.file_field :image ,placeholder:"画像",accept: "image/*" %></p>
+          <p><strong>どこで？</strong></p>
+          <p><%= f.text_field :field ,placeholder:"花の名所、植物園"%></p>
 
-        <p><strong>いつ？</strong></p>
+          <p><strong>どんな花が？</strong></p>
+          <p><%= f.text_field :flower ,placeholder:"桜、躑躅、紫陽花"%></p>
 
-
-        <p><%= f.text_field :day ,placeholder:"20200101"%></p>
-
-        <p><strong>どこで？</strong></p>
-
-
-        <p><%= f.text_field :field ,placeholder:"花の名所、植物園"%></p>
-
-        <p><strong>どんな花が？</strong></p>
-
-
-        <p><%= f.text_field :flower ,placeholder:"桜、躑躅、紫陽花"%></p>
+        </div>
 
     </div>
 
     <div class = "col-lg-6">
+
+      <div class = ml-5>
 
       <p><strong>住所など分かりましたらお願いします。</strong>＜任意＞</p>
       <p>＜※ 東京都台東区上野1-1-1、など＞</p>
@@ -73,8 +73,8 @@
       <p><strong>何分咲き？</strong></p>
 
         <div id="star">
-             <%= f.label :star,'開花状況' %>
-             <%= f.hidden_field :star, id: :review_star %>
+          <%= f.label :star,'開花状況' %>
+           <%= f.hidden_field :star, id: :review_star %>
         </div>
 
         <script>
@@ -91,11 +91,19 @@
               });
         </script>
 
+      </div>
+
     </div>
 
-      <p class = "mx-auto"><%= f.submit '花の咲く場所を投稿' ,class: "btn btn-success m-3"%></p>
+  </div>
 
-    <% end %>
+  <div class = "row">
+
+    <div class = "mx-auto pt-3">
+     <p><%= f.submit '花の咲く場所を投稿' ,class: "btn btn-success m-3"%></p>
+
+        <% end %>
+    </div>
 
   </div>
 

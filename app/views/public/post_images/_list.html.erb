@@ -1,8 +1,10 @@
-<% if user == current_user %>
-  <h5 class = "mt-3">Your profile</h5>
-<% else %>
-  <h5 class = "mt-3">User detail</h5>
-<% end %>
+<div class = "mt-5" >
+
+  <% if user == current_user %>
+    <h5>Your profile</h5>
+  <% else %>
+    <h5>User detail</h5>
+  <% end %>
 
     <p><strong>Image</strong></p>
 
@@ -20,3 +22,5 @@
     <p><%= link_to"プロフィールを編集する",edit_public_user_path(user.id),class: "btn btn-info" %></p>
     <p><%= link_to'花の咲く場所を投稿',new_public_post_image_path,class: "btn btn-success" %></p>
   <% end %>
+  
+</div>

@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    resources :users, only:[:index, :show, :edit, :update]
-    resources :post_images, only:[:index, :show, :edit, :update, :destroy]
-    get 'search' => 'users#search'
-    resources :post_comments, only: [:destroy]
-  end
-
-  root to:'public/homes#top'
+  root to:'public/homes#top' ,as: 'top'
 
   namespace :public do
 
@@ -28,7 +21,14 @@ Rails.application.routes.draw do
     get 'relationships/followers'
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers'  => 'relationships#followers', as: 'followers'
-    
+
+  end
+
+  namespace :admin do
+    resources :users, only:[:index, :show, :edit, :update]
+    resources :post_images, only:[:index, :show, :edit, :update, :destroy]
+    get 'search' => 'users#search'
+    resources :post_comments, only: [:destroy]
   end
 
   devise_for :users,controllers:{

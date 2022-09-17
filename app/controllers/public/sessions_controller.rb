@@ -32,18 +32,8 @@ class Public::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email])
     if @user
       if @user.valid_password?(params[:user][:password]) && !@user.is_active
-        redirect_to root_path
+        redirect_to top_path
       end
     end
   end
 end
-
-  # def reject_inactive_customer
-  #   @customer = Customer.find_by(email: params[:customer][:email])
-  #   if @customer
-  #     if @customer.valid_password?(params[:customer][:password]) && !@customer.is_active
-  #       flash[:danger] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
-  #       redirect_to new_customer_session_path
-  #     end
-  #   end
-  # end

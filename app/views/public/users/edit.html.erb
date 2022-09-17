@@ -2,9 +2,9 @@
 
   <div class = "row" >
 
-    <div class = "mx-auto" >
+    <div class = "mx-auto mt-3" >
 
-      <h3 class = "mt-3">Editing user detail</h3>
+      <h3 style = "font-family: 'Kiwi Maru', serif;">プロフィールの編集</h3>
 
       <%= form_with model: @user,url: public_user_path(@user.id),method: :patch do |f| %>
 
@@ -20,19 +20,13 @@
 
         <p><%= f.text_area :introduction %></p>
 
-        <p><strong>Mail address</strong></p>
-
-        <p><%= f.text_field :email %></p>
-
-        <p><strong>Password</strong></p>
-
-        <p><%= f.text_field :encrypted_password %></p>
-
         <p><%= f.submit '編集する',class: "btn btn-success"%></p>
 
       <% end %>
 
-      <p><%= link_to'退会する',public_unsubscribe_path(@user.id),class: "btn btn-danger" %></p>
+      <div class = "mt-5" >
+        <p><%= link_to'退会する',public_unsubscribe_path(@user.id),class: "btn btn-danger" %></p>
+      </div>
 
     </div>
 

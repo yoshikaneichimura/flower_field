@@ -10,11 +10,17 @@
     <%= javascript_pack_tag 'application'%>
   </head>
 
-  <body class = "d-flex flex-column vh-100" >
-    <header class = "text-white" style = "background-color: #006a6c; text-ligth" >
+  <body class = "d-flex flex-column vh-100 text-white-50" style = "background-color: #203744;">
+    <header class = "text-white-50" style = "background-color: #165e83;" >
       <nav class = "navbar navbar-expand-lg navbar-dark" >
         <div class = "container" >
-          <h1 style="font-family: 'Nunito', sans-serif;">Flower Field</h1>
+
+            <h3 style="font-family: 'Comfortaa', cursive;" >Flower<%= link_to top_path do %>
+                <%= image_tag('icon.png')%>
+              <% end %>Field
+            </h3>
+
+
           <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target = "#navbarNavDropdown" aria-controls = "navbarNavDropdown" aria-expanded = "false" aria-label = "Toggle navigation">
             <span class = "navbar-toggler-icon"></span>
           </button>
@@ -25,22 +31,22 @@
         <% if user_signed_in? %>
 
         <ul class = "navbar-nav ml-auto" >
-          <li class = "nav-item" >
+          <li class = "nav-item" style="font-family: 'Comfortaa', cursive;">
             <%= link_to public_user_path(current_user.id),class: 'nav-link text-ligth' do %>
              <i class="fas fa-user"></i> My page
             <% end %>
           </li>
-          <li class = "nav-item" >
+          <li class = "nav-item" style="font-family: 'Comfortaa', cursive;">
             <%= link_to public_post_images_path,class: 'nav-link text-ligth' do %>
               <i class="fas fa-images"></i> Flower fields
             <% end %>
           </li>
-          <li class = "nav-item" >
+          <li class = "nav-item" style="font-family: 'Comfortaa', cursive;">
             <%= link_to public_users_path,class: 'nav-link text-ligth' do %>
             <i class="fas fa-users"></i> Users
               <% end %>
           </li>
-          <li class = "nav-item" >
+          <li class = "nav-item" style="font-family: 'Comfortaa', cursive;">
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-ligth' do %>
               <i class="fas fa-user-lock"></i> log out
             <% end %>
@@ -52,7 +58,7 @@
               <%= submit_tag 'Search', :name => nil,class: "btn btn-danger" %>
             <% end %>
         </div>
-        <!--ユーザーログイン-->
+        <!--/ユーザーログイン-->
 
         <!--管理者ログイン-->
         <% elsif admin_signed_in? %>
@@ -68,60 +74,57 @@
             <%= link_to"ログアウト",destroy_admin_session_path, method: :delete ,class: 'nav-link text-ligth'%>
           </li>
         </ul>
-        <div class = "p-3">
+        <div class = "p-1">
           <lable>ユーザーを検索</lable>
             <%= form_tag(admin_search_path, :method => 'get') do %>
               <%= text_field_tag :search %>
               <%= submit_tag 'Search',:name => nil,class: "btn btn-danger" %>
             <% end %>
         </div>
-        <!--管理者ログイン-->
-
+        <!--/管理者ログイン-->
         <% else %>
 
-        <ul class = "navbar-nav ml-auto" >
+        <!--ログイン前-->
+        <ul class = "navbar-nav ml-auto" style="font-family: 'Comfortaa', cursive;">
           <li class = "nav-item" >
-            <%= link_to root_path,class: 'nav-link text-ligth' do %>
+            <%= link_to top_path,class: 'nav-link text-ligth' do %>
              <i class="fas fa-flag"></i> Home
             <% end %>
           </li>
-          <li class = "nav-item" >
+          <li class = "nav-item" style="font-family: 'Comfortaa', cursive;">
             <%= link_to public_about_path,class: 'nav-link text-ligth' do %>
              <i class="fas fa-globe"></i> About
             <% end %>
           </li>
-          <li class = "nav-item" >
+          <li class = "nav-item" style="font-family: 'Comfortaa', cursive;">
             <%= link_to new_user_session_path,class: 'nav-link text-ligth' do %>
              <i class="fas fa-user-lock"></i> Log in
             <% end %>
           </li>
-          <li class = "nav-item" >
+          <li class = "nav-item" style="font-family: 'Comfortaa', cursive;">
             <%= link_to new_user_registration_path,class: 'nav-link text-ligth' do %>
              <i class="fas fa-user-plus"></i> Sign up
             <% end %>
           </li>
         </ul>
-
+       <!--/ログイン前-->
         <% end %>
-
       </nav>
     </header><span class = "border-bottom border-danger"></span>
 
-    <main class = "mb-auto bg-dark text-white-50" style="height: -webkit-fill-available;">
-
+    <main class = "mb-auto">
       <%= yield %>
-
     </main>
 
-    <span class = "border-top border-danger"></span><footer class = "text-white" style = "background-color: #006a6c;">
+    <span class = "border-top border-danger"></span>
+    <footer class = "text-white-50" style = "background-color: #165e83;">
       <div class = "container">
         <div class = "row">
-          <div class = "mx-auto">
-            ©tefutefu.inc
+          <div class = "mx-auto mt-1">
+            <p style="font-family: 'Comfortaa', cursive;"> ©tefutefu.inc</p>
           </div>
         </div>
       </div>
     </footer>
-
   </body>
 </html>

@@ -1,7 +1,9 @@
 class Admin::PostImagesController < ApplicationController
+  
+  before_action :authenticate_admin!
   def index
     @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all
-    @post_images = @post_images.page(params[:page]).per(25)
+    @post_images = @post_images.page(params[:page]).per(10)
   end
 
   def show

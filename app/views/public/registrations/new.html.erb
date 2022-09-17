@@ -2,9 +2,9 @@
 
   <div class = "row">
 
-    <div class = "mx-auto">
+    <div class = "mx-auto mt-5">
 
-      <h3 class = "mt-5">User sign up</h3>
+      <h3 style="font-family: 'Comfortaa', cursive; font-weight:600;">User sign up</h3>
 
       <%= form_with model: @user,url: user_registration_path,id:'new_user',class: 'new_user' do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
@@ -41,6 +41,12 @@
 
     </div>
 
+  </div>
+
+  <div class = "row" >
+    <div class = "mx-auto mt-5">
+      <p><%= link_to'ゲストログインはこちら',public_homes_guest_sign_in_path, method: :post ,class: "btn btn-primary btn-lg" %></p>
+    </div>
   </div>
 
 </div>

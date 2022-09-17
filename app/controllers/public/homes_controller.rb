@@ -11,7 +11,6 @@ class Public::HomesController < ApplicationController
       user.name = "guest"
   end
   sign_in user
-  redirect_to root_path
+  redirect_to top_path
   end
-
 end

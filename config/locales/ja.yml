@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      post_image:
+    attributes:
+      post_image:
+        flower: "花の名前"
+        field: "場所の名前"
+        day: "日付"
+        star: "開花状況"
+
+  devise:
+    sessions:
+      user:
+        signed_in: "ログインしました"
+    registrations:
+      user:
+        signed_up: "新規登録しました"

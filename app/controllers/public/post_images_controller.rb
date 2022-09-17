@@ -1,4 +1,7 @@
 class Public::PostImagesController < ApplicationController
+
+  before_action :authenticate_user!
+
   def new
     @post_image = PostImage.new
   end
@@ -6,7 +9,7 @@ class Public::PostImagesController < ApplicationController
   def index
     @user = current_user
     @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all
-    @post_images = @post_images.page(params[:page]).per(5)
+    @post_images = @post_images.page(params[:page]).per(10)
 
   end
 

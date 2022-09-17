@@ -7,10 +7,10 @@ class PostImage < ApplicationRecord
 
   has_one_attached :image
 
-    validates :flower,presence: true
-    validates :field, presence: true
-    validates :day, numericality: {presence: true, message: "日付を入力して下さい"}
-    validates :star, numericality: {presence: true, message: "開花状況を入力して下さい"}
+    validates :flower,length: {minimum:1,message: "：花の名前を入力して下さい"}
+    validates :field,length: {minimum:1,message: "：場所の名前を入力して下さい"}
+    validates :day, numericality: {presence: true, message: "：日付を入力して下さい"}
+    validates :star, numericality: {presence: true, message: "：開花状況を入力して下さい"}
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

@@ -1,74 +1,104 @@
-<div class = "container" >
+<div class = "container">
 
-  <h3>投稿の編集</h3>
+  <div class = "row">
 
-  <div class = "row" >
-
-    <div class = "col-lg-6" >
-
-      <%= form_with model: @post_image,url: admin_post_image_path,method: :patch do |f| %>
-
-        <p><strong>Area</strong></p>
-
-        <%= f.collection_select(:tag_id, Tag.all, :id, :area ) %>
-
-        <p><strong>Image</strong></p>
-
-        <p><%= f.file_field :image, accept: "image/*" %></p>
-
-        <p><strong>Day</strong></p>
-
-        <p><%= f.text_field :day %></p>
-
-        <p><strong>Field</strong></p>
-
-        <p><%= f.text_field :field %></p>
-
-        <p><strong>Flower</strong></p>
-
-        <p><%= f.text_field :flower %></p>
-
+    <div class = "mx-auto p-3">
+      <div class = "mx-auto">
+        <h3>投稿の編集</h3>
+      </div>
     </div>
 
-    <div class = "col-lg-6" >
+  </div>
 
-        <p><strong>Adress</strong></p>
+  <div class = "row">
 
-        <p><%= f.text_area :address %></p>
+    <div class = "mx-auto">
 
-        <p><strong>Comment</strong></p>
-
-        <p><%= f.text_area :comment %></p>
-
-
-        <p><strong>何分咲き？</strong></p>
-
-        <div id="star">
-           <%= f.label :star,'開花状況' %>
-           <%= f.hidden_field :star, id: :review_star %>
-        </div>
-
-        <script>
-          $(function(){
-            $('#star').raty({
-              size    :  36,
-              starOff :  '<%= asset_path('star-off.png') %>',
-              starOn  :  '<%= asset_path('star-on.png') %>',
-
-              scoreName: 'post_image[star]',
-              targetScore: '#review_star',
-              half: false,
-            });
-          });
-        </script>
-
-        <%= f.submit '編集する',class: "btn btn-success m-3" %>
-
+      <% if @post_image.errors.any? %>
+        <%= @post_image.errors.count %>件のエラーが発生しました。
+          <ul>
+            <% @post_image.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
       <% end %>
 
     </div>
 
   </div>
 
-</div>
+  <div class = "row">
 
+    <div class = "col-lg-6">
+
+      <div class = ml-5>
+
+      <%= form_with model: @post_image,url: admin_post_image_path,method: :patch do |f| %>
+
+          <p><strong>Aria</strong></p>
+          <p><%= f.collection_select(:tag_id, Tag.all, :id, :area )%></p>
+
+          <p><strong>Image</strong></p>
+          <p><%= f.file_field :image ,accept: "image/*" %></p>
+
+          <p><strong>Day</strong></p>
+          <p><%= f.text_field :day %></p>
+
+          <p><strong>Field</strong></p>
+          <p><%= f.text_field :field %></p>
+
+          <p><strong>Flower</strong></p>
+          <p><%= f.text_field :flower %></p>
+
+        </div>
+
+    </div>
+
+    <div class = "col-lg-6">
+
+      <div class = ml-5>
+
+      <p><strong>Adress</strong></p>
+      <p><%= f.text_area :address %></p>
+
+      <p><strong>Comment</strong></p>
+      <p><%= f.text_area :comment %></p>
+
+      <p><strong>開花状況</strong></p>
+
+        <div id="star">
+          <%= f.label :star,'開花状況' %>
+           <%= f.hidden_field :star, id: :review_star %>
+        </div>
+
+        <script>
+              $(function(){
+                $('#star').raty({
+                  size    :  36,
+                  starOff :  '<%= asset_path('star-off.png') %>',
+                  starOn  :  '<%= asset_path('star-on.png') %>',
+
+                  scoreName: 'post_image[star]',
+                  targetScore: '#review_star',
+                  half: false,
+                });
+              });
+        </script>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class = "row">
+
+    <div class = "mx-auto pt-3">
+     <p><%= f.submit 'この内容で編集する' ,class: "btn btn-success m-3"%></p>
+
+        <% end %>
+    </div>
+
+  </div>
+
+</div>

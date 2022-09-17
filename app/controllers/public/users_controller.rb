@@ -1,4 +1,7 @@
 class Public::UsersController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     @user = current_user
     @users = User.page(params[:page])
@@ -28,7 +31,7 @@ class Public::UsersController < ApplicationController
     user = current_user
     user.update(is_active: false)
     reset_session
-    redirect_to root_path
+    redirect_to top_path
   end
 
   private
