@@ -8,7 +8,7 @@ class Public::PostImagesController < ApplicationController
 
   def index
     @user = current_user
-    @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all
+    @post_images = params[:tag_id].present? ? Tag.find(params[:tag_id]).post_images : PostImage.all.order(created_at: :desc)
     @post_images = @post_images.page(params[:page]).per(10)
 
   end
@@ -26,18 +26,22 @@ class Public::PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
-    if @post_image.save
-       flash[:notice] = "投稿しました"
-       redirect_to public_post_images_path
-    else render :new
-
+    if  @post_image.save
+        flash[:notice] = "投稿しました"
+        redirect_to public_post_images_path
+    else
+        render :new
     end
   end
 
   def update
-    post_image = PostImage.find(params[:id])
-    post_image.update(post_image_params)
-    redirect_to public_post_image_path(post_image.id)
+    @post_image = PostImage.find(params[:id])
+    if  @post_image.update(post_image_params)
+        flash[:notice] = "投稿内容を編集しました"
+        redirect_to public_post_image_path(@post_image.id)
+    else
+        render :edit
+    end
   end
 
   def destroy
@@ -57,5 +61,7 @@ class Public::PostImagesController < ApplicationController
   end
 
 end
+
+
 
 

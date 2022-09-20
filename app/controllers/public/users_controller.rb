@@ -4,7 +4,8 @@ class Public::UsersController < ApplicationController
 
   def index
     @user = current_user
-    @users = User.page(params[:page])
+    @users = User.all.order(created_at: :desc)
+    @users = @users.page(params[:page]).per(10)
   end
 
   def show

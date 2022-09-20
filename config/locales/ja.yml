@@ -13,6 +13,10 @@ ja:
     sessions:
       user:
         signed_in: "ログインしました"
+        signed_out: "ログアウトしました"
+      admin:
+        signed_in: "管理者ページにログインしました"
+        signed_out: "管理者ページをログアウトしました"
     registrations:
       user:
         signed_up: "新規登録しました"

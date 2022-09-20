@@ -2,6 +2,11 @@
 
   <div class = "row" >
     <div class = "mx-auto mt-5" >
+      <% if flash[:notice] %>
+        <p id = "notice">
+          <%= flash[:notice] %>
+        </p>
+        <% end %>
       <h1 style="font-family: 'Comfortaa', cursive; font-weight:600;">About</h1>
     </div>
   </div>

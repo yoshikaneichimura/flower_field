@@ -6,6 +6,12 @@
 
       <h3 class = "mt-5">管理者ログイン</h3>
 
+      <% if flash[:notice] %>
+        <p id = "notice">
+          <%= flash[:notice] %>
+        </p>
+        <% end %>
+
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email %><br />

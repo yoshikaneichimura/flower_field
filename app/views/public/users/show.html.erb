@@ -6,9 +6,11 @@
 
       <%= render 'public/post_images/list' ,user: @user %>
 
-      <% if @user.is_active == false %>
-        このユーザーは退会しました。
-      <% end %>
+      <div class = "my-3" >
+        <% if @user.is_active == false %>
+          このユーザーは退会しました。
+        <% end %>
+      </div>
 
       <!--follow機能-->
 
@@ -17,7 +19,6 @@
         <% if current_user != @user %>
 
           <% if current_user.following? (@user) %>
-
             <label><%= link_to "unfollow",public_relationship_path(@user.id),method: :delete,class: "btn btn-danger" %></label>
 
           <% else %>
@@ -25,6 +26,7 @@
           <% if @user.is_active == true %>
             <label><%= link_to "follow", public_relationships_path(@user.id),method: :post,class: "btn btn-primary" %></label>
           <% end %>
+
             </br>
           <% end %>
 
@@ -34,8 +36,10 @@
 
         <label><strong><%= @user.followers.count %></strong> follower</label>
         </br>
-        <label><%= link_to"follow list",public_relationships_followings_path(@user.id) ,class: "btn btn-info" %></label>
-        <label><%= link_to"follower list",public_relationships_followers_path(@user.id) ,class: "btn btn-info" %></label>
+        <div class = "p-1" >
+          <label><%= link_to"follow list",public_relationships_followings_path(@user.id) ,class: "btn btn-info" %></label>
+          <label><%= link_to"follower list",public_relationships_followers_path(@user.id) ,class: "btn btn-info" %></label>
+        </div>
 
       </div>
 

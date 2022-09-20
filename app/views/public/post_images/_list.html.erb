@@ -19,8 +19,8 @@
     <p><%= user.introduction %></p>
 
   <% if user == current_user %>
-    <p><%= link_to"プロフィールを編集する",edit_public_user_path(user.id),class: "btn btn-info" %></p>
     <p><%= link_to'花の咲く場所を投稿',new_public_post_image_path,class: "btn btn-success" %></p>
+    <p><%= link_to"プロフィールを編集する",edit_public_user_path(user.id),class: "btn btn-info" %></p>
   <% end %>
-  
+
 </div>
