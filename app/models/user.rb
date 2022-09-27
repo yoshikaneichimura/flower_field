@@ -40,4 +40,6 @@ class User < ApplicationRecord
     return User.all unless search
     User.where(['name LIKE ?' , "%#{search}%"])
   end
+
+  validates :name, presence: true
 end

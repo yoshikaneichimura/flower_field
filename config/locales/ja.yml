@@ -1,4 +1,5 @@
 ja:
+# activerecord
   activerecord:
     models:
       post_image:
@@ -9,14 +10,52 @@ ja:
         day: "日付"
         star: "開花状況"
 
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        name: "ユーザーネーム"
+
+    errors:
+      models:
+        post_image:
+          attributes:
+            flower:
+              blank: "入力して下さい"
+            field:
+              blank: "入力して下さい"
+            day:
+              blank: "入力して下さい"
+            star:
+              blank: "入力して下さい"
+
+        user:
+          attributes:
+            email:
+              blank: "を入力して下さい"
+            password:
+              blank: "を入力して下さい"
+            name:
+              blank: "を入力して下さい"
+# /activerecord
+
+# devise
   devise:
     sessions:
       user:
         signed_in: "ログインしました"
         signed_out: "ログアウトしました"
+
       admin:
         signed_in: "管理者ページにログインしました"
         signed_out: "管理者ページをログアウトしました"
+
     registrations:
       user:
         signed_up: "新規登録しました"
+# /device
+
+# errors
+  errors:
+    messages:
+        not_saved: "登録できませんでした"
+# /errors
