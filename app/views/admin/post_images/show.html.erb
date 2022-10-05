@@ -55,11 +55,14 @@
 
       <div class = "mt-3" >
 
-        <p><strong>Adress</strong>  <%= @post_image.address %></p>
+        <p><strong>Adress</strong></p>
+        <p><%= @post_image.address %></p>
 
-        <p><strong>Comment</strong>   <%= @post_image.comment %></p>
+        <p><strong>Comment</strong></p>
+        <p><%= @post_image.comment %></p>
 
-        <p><strong>User</strong>    <%= @post_image.user.name %></p>
+        <p><strong>User</strong></p>
+        <p><%= @post_image.user.name %></p>
 
       <!--いいね機能-->
         <p>♥<%= @post_image.favorites.count %>いいね</p>
